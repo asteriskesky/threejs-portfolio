@@ -1,0 +1,158 @@
+/* Brutalist Loader - Minimal & Modern */
+
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.loader-container.fade-out {
+    animation: fadeOut 0.6s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Grid Background - Brutalist Style */
+.loader-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: -1px -1px;
+}
+
+.loader-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 2px, transparent 2px);
+    background-size: 200px 200px;
+    background-position: -1px -1px;
+}
+
+/* Content Container */
+.loader-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 2rem;
+}
+
+/* Progress Bar Wrapper */
+.loader-bar-wrapper {
+    width: 100%;
+}
+
+/* Label - Message and Percentage */
+.loader-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    font-family: 'Courier New', 'Courier', monospace;
+    text-transform: uppercase;
+}
+
+.loader-message {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.15em;
+    transition: opacity 0.2s ease;
+}
+
+.loader-percentage {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.1em;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Progress Bar */
+.loader-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-bar-fill {
+    height: 100%;
+    background: #ffffff;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* Optional: Add a subtle glow to the progress bar */
+.loader-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: 0;
+    width: 4px;
+    height: 6px;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .loader-content {
+        max-width: 90%;
+        padding: 0 1rem;
+    }
+
+    .loader-label {
+        margin-bottom: 0.75rem;
+    }
+
+    .loader-message,
+    .loader-percentage {
+        font-size: 0.75rem;
+    }
+
+    .loader-grid {
+        background-size: 30px 30px;
+    }
+
+    .loader-grid::before {
+        background-size: 120px 120px;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .loader-bar {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .loader-bar-fill {
+        background: #ffffff;
+    }
+}
