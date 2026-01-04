@@ -1,0 +1,2692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Akash Ojha - Product Manager with Design & Engineering depth. Building products that work for users, business, and in production.">
+    <title>Akash Ojha - Product Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --transition-speed: 0.8s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+            background: #F8F9FA;
+            color: #1A1A1A;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 1200px;
+            width: calc(100% - 80px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #E5E7EB;
+            border-radius: 100px;
+            padding: 8px 8px 8px 24px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .navbar:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+        }
+
+        .navbar-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1A1A1A;
+            text-decoration: none;
+        }
+
+        .navbar-logo span {
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .navbar-links a {
+            color: #4B5563;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #1A1A1A;
+        }
+
+        .navbar-cta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .navbar-cta .linkedin-icon {
+            width: 20px;
+            height: 20px;
+            color: #4B5563;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .navbar-cta .linkedin-icon:hover {
+            color: #1A1A1A;
+        }
+
+        .navbar-cta .say-hello {
+            padding: 10px 24px;
+            background: #1A1A1A;
+            color: #FFFFFF;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .navbar-cta .say-hello:hover {
+            background: #374151;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                width: calc(100% - 40px);
+                top: 16px;
+            }
+
+            .navbar-links {
+                display: none;
+            }
+
+            .navbar-container {
+                padding: 0 4px;
+            }
+        }
+
+        /* Hero Section - Full viewport with scroll states */
+        .hero-wrapper {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            opacity: 0.8;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(40px, 8vw, 96px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            letter-spacing: -0.03em;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 28px);
+            font-weight: 400;
+            line-height: 1.5;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 48px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .hero.final-state .hero-cta {
+            opacity: 1;
+        }
+
+        /* Scroll hint only */
+        .scroll-hint {
+            position: fixed;
+            bottom: 48px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            z-index: 100;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        /* Hero States - 4 slides */
+        .hero[data-state="0"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .hero[data-state="1"] {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .hero[data-state="2"] {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .hero[data-state="3"] {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: inherit;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.95);
+            color: #0A0A0A;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #FFFFFF;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 20;
+            background: #F8F9FA;
+            margin-top: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            color: #1A1A1A;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .about-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .about-card:hover {
+            transform: translateY(-8px);
+            border-color: #667eea;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .about-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1A1A1A;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        @media (max-width: 968px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-card p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        /* Case Studies - Visual Cards */
+        .case-studies {
+            display: grid;
+            gap: 48px;
+        }
+
+        .case-study {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 24px;
+            padding: 48px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-study::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+            transition: all 0.4s ease;
+        }
+
+        .case-study:hover::after {
+            transform: translate(30%, -30%) scale(1.5);
+        }
+
+        .case-study:hover {
+            transform: translateY(-8px);
+            border-color: #667eea;
+            box-shadow: 0 24px 48px rgba(102, 126, 234, 0.15);
+        }
+
+        .case-study-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .case-study-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .case-study-role {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .case-study-tag {
+            padding: 8px 16px;
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .case-study-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 20px;
+            background: #F8F9FA;
+            border-radius: 12px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .case-study-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .case-study-content p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .skill-tag {
+            padding: 6px 14px;
+            background: #F8F9FA;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* How I Work - Icon Grid */
+        .work-principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .principle {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .principle:hover {
+            transform: translateY(-8px);
+            border-color: #667eea;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+        }
+
+        .principle-icon {
+            font-size: 56px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .principle h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: #1A1A1A;
+        }
+
+        .principle p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Experience Timeline - Updated Design */
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #E5E7EB;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 24px;
+            width: 12px;
+            height: 12px;
+            background: #374151;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            border: 3px solid #F8F9FA;
+        }
+
+        .timeline-content {
+            width: calc(50% - 40px);
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: #D1D5DB;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: calc(50% + 30px);
+            top: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #6B7280;
+            white-space: nowrap;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            left: auto;
+            right: calc(50% + 30px);
+        }
+
+        .timeline-content h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #1A1A1A;
+        }
+
+        .timeline-content .company {
+            color: #6B7280;
+            font-size: 15px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .timeline-content p {
+            color: #4B5563;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .timeline-content li {
+            color: #6B7280;
+            font-size: 14px;
+            padding-left: 0;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .timeline-content li::before {
+            display: none;
+        }
+
+        .timeline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .timeline-tag {
+            padding: 6px 12px;
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #4B5563;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 968px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                padding-left: 50px;
+            }
+
+            .timeline-item::before {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin: 0 !important;
+            }
+
+            .timeline-date {
+                position: static;
+                margin-bottom: 12px;
+                display: block;
+            }
+
+            .timeline-item:nth-child(even) .timeline-date {
+                left: auto;
+            }
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 24px;
+            padding: 80px 60px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 40px;
+            margin-bottom: 16px;
+            color: #1A1A1A;
+        }
+
+        .contact p {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #F8F9FA;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            color: #1A1A1A;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: #667eea;
+            color: #FFFFFF;
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+        }
+
+        .contact-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .contact-info a {
+            color: #666;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.2s ease;
+        }
+
+        .contact-info a:hover {
+            color: #667eea;
+        }
+
+        /* Footer */
+        footer {
+            background: #FFFFFF;
+            border-top: 1px solid #E5E7EB;
+            padding: 80px 0;
+            margin-top: 120px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1A1A1A;
+        }
+
+        .footer-logo span {
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .footer-tagline {
+            font-size: 14px;
+            color: #6B7280;
+            max-width: 300px;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 48px;
+            align-items: flex-start;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links-title {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #9CA3AF;
+            margin-bottom: 4px;
+        }
+
+        .footer-links a {
+            color: #4B5563;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #1A1A1A;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding: 24px 40px 0;
+            border-top: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: #9CA3AF;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            color: #6B7280;
+            transition: color 0.2s ease;
+        }
+
+        .footer-social a:hover {
+            color: #1A1A1A;
+        }
+
+        .footer-social svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 60px 0;
+                margin-top: 80px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 24px;
+            }
+
+            .footer-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 24px 24px 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                font-size: 20px;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .container {
+                padding: 0 24px;
+            }
+
+            .case-study {
+                padding: 32px 24px;
+            }
+
+            .contact {
+                padding: 60px 32px;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                padding-left: 40px;
+            }
+        }
+
+        /* Inspiration Wall - Auto-scrolling */
+        .inspiration-wall {
+            background: #FFFFFF;
+            padding: 80px 0;
+            overflow: hidden;
+            border-top: 1px solid #E5E7EB;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .inspiration-header {
+            max-width: 1200px;
+            margin: 0 auto 48px;
+            padding: 0 40px;
+        }
+
+        .inspiration-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #9CA3AF;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .inspiration-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .inspiration-header p {
+            font-size: 16px;
+            color: #6B7280;
+            max-width: 600px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .scroll-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            animation: scroll-left 40s linear infinite;
+        }
+
+        .scroll-row:nth-child(3) {
+            animation: scroll-right 40s linear infinite;
+        }
+
+        .scroll-row:hover {
+            animation-play-state: paused;
+        }
+
+        .scroll-row-inner {
+            display: flex;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .inspiration-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            padding: 32px;
+            min-width: 360px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .inspiration-card:hover {
+            border-color: #D1D5DB;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .inspiration-card::after {
+            content: '↗';
+            position: absolute;
+            top: 28px;
+            right: 28px;
+            font-size: 24px;
+            color: #9CA3AF;
+            transition: all 0.3s ease;
+        }
+
+        .inspiration-card:hover::after {
+            color: #1A1A1A;
+            transform: translate(2px, -2px);
+        }
+
+        .card-category {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            width: fit-content;
+        }
+
+        .card-category.engineering {
+            background: #EDE9FE;
+            color: #7C3AED;
+        }
+
+        .card-category.product {
+            background: #D1FAE5;
+            color: #059669;
+        }
+
+        .card-category.design {
+            background: #DBEAFE;
+            color: #2563EB;
+        }
+
+        .card-category.technical {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .card-category.strategy {
+            background: #FED7AA;
+            color: #EA580C;
+        }
+
+        .card-category svg {
+            display: none;
+        }
+
+        .inspiration-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1A1A1A;
+            margin: 0;
+            line-height: 1.3;
+            padding-right: 32px;
+        }
+
+        .inspiration-card .source {
+            font-size: 15px;
+            color: #6B7280;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .inspiration-wall {
+                padding: 60px 0;
+            }
+
+            .inspiration-header {
+                padding: 0 24px;
+            }
+
+            .inspiration-card {
+                min-width: 240px;
+            }
+        }
+
+        /* How I Work - Numbered Principles */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .principle-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            border-color: #D1D5DB;
+        }
+
+        .principle-number {
+            font-size: 14px;
+            font-weight: 600;
+            color: #9CA3AF;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+
+        .principle-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1A1A1A;
+        }
+
+        .principle-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #6B7280;
+        }
+
+        /* Enhanced About Me - Skills with Tags */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .about-text {
+            position: sticky;
+            top: 120px;
+        }
+
+        .about-text .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #9CA3AF;
+            margin-bottom: 16px;
+        }
+
+        .about-text h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            color: #1A1A1A;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #4B5563;
+            margin-bottom: 16px;
+        }
+
+        .about-text .highlight {
+            font-weight: 600;
+            color: #1A1A1A;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .skill-category {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: #D1D5DB;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .skill-icon.product {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .skill-icon.design {
+            background: rgba(240, 147, 251, 0.1);
+        }
+
+        .skill-icon.engineering {
+            background: rgba(79, 172, 254, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1A1A1A;
+        }
+
+        .skill-category p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #6B7280;
+            margin-bottom: 16px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag-item {
+            padding: 6px 12px;
+            background: #F3F4F6;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #4B5563;
+            font-weight: 500;
+        }
+
+        /* Gallery & Work - Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .project-card {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #D1D5DB;
+        }
+
+        .project-embed {
+            width: 100%;
+            height: 320px;
+            background: #000;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-embed iframe {
+            width: 100% !important;
+            height: 100% !important;
+            border: 0;
+            display: block;
+        }
+
+        .project-content {
+            padding: 32px;
+        }
+
+        .project-category {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6B7280;
+            margin-bottom: 12px;
+        }
+
+        .project-category svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .project-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1A1A1A;
+        }
+
+        .project-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #6B7280;
+        }
+
+        /* Updated Contact Section */
+        .contact-cta {
+            text-align: center;
+        }
+
+        .contact-cta h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1A1A1A;
+        }
+
+        .contact-cta p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #6B7280;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        .contact-btn {
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-btn-primary {
+            background: #1A1A1A;
+            color: #FFFFFF;
+        }
+
+        .contact-btn-primary:hover {
+            background: #374151;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-btn-secondary {
+            background: #FFFFFF;
+            color: #1A1A1A;
+            border: 1px solid #E5E7EB;
+        }
+
+        .contact-btn-secondary:hover {
+            border-color: #1A1A1A;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-additional {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-additional a {
+            color: #6B7280;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        .contact-additional a:hover {
+            color: #1A1A1A;
+            border-bottom-color: #1A1A1A;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 968px) {
+            .principles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-layout {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .about-text {
+                position: relative;
+                top: 0;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fade in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">AKASH <span>OJHA</span></a>
+            <div class="navbar-links">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#how-i-work">Process</a>
+                <a href="#experience">Experience</a>
+            </div>
+            <div class="navbar-cta">
+                <a href="https://www.linkedin.com/in/skylimiting/" target="_blank" rel="noopener" class="linkedin-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                    </svg>
+                </a>
+                <a href="#contact" class="say-hello">Say Hello</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Scroll States -->
+    <div class="hero-wrapper">
+        <section class="hero" data-state="0">
+            <div class="hero-content">
+                <div class="hero-label" id="heroLabel">Product Manager</div>
+                <h1 id="heroTitle">Strategic thinking meets execution</h1>
+                <p class="hero-subtitle" id="heroSubtitle">Building products that work—for users, for business, and in
+                    production</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">Get in touch</a>
+                    <a href="#work" class="btn btn-secondary">See my work</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="scroll-hint" id="scrollHint">Scroll to explore</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- About Section - Enhanced with Skills -->
+        <section id="about">
+            <div class="container">
+                <div class="about-layout fade-in">
+                    <div class="about-text">
+                        <div class="section-label">ABOUT ME</div>
+                        <h2 class="section-title">I build products. I design experiences. I write code.</h2>
+                        <p>I'm Akash Ojha, a Product Manager based in India with deep hands-on experience in Design and
+                            Engineering. I don't just write specs; I understand how things are built and how they should
+                            feel.</p>
+                        <p>Whether it be leading a team from 0→1 or writing production code
+                            for founding teams, I bridge the gap between business vision, user experience, and
+                            technical feasibility.</p>
+                        <p class="highlight">I believe the best products come from understanding the tradeoffs at every
+                            layer of the stack.</p>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-category fade-in">
+                            <div class="skill-header">
+                                <div class="skill-icon product">🎯</div>
+                                <h3>Product</h3>
+                            </div>
+                            <p>Product discovery, PRDs, roadmaps, and stakeholder management. Expert in GTM thinking and
+                                analytics-driven decisions.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag-item">Product Strategy</span>
+                                <span class="skill-tag-item">PRDs</span>
+                                <span class="skill-tag-item">GTM</span>
+                                <span class="skill-tag-item">Scrum</span>
+                            </div>
+                        </div>
+                        <div class="skill-category fade-in">
+                            <div class="skill-header">
+                                <div class="skill-icon design">✨</div>
+                                <h3>Design</h3>
+                            </div>
+                            <p>Strong UI/UX instincts with experience in user flows, wireframes, and interaction design.
+                                Focusing on craft and clarity.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag-item">UX Flows</span>
+                                <span class="skill-tag-item">Wireframing</span>
+                                <span class="skill-tag-item">Interaction Design</span>
+                                <span class="skill-tag-item">Prototyping</span>
+                            </div>
+                        </div>
+                        <div class="skill-category fade-in">
+                            <div class="skill-header">
+                                <div class="skill-icon engineering">⚡</div>
+                                <h3>Engineering</h3>
+                            </div>
+                            <p>Hands-on with frontend and backend. Comfortable with system design, APIs, and technical
+                                tradeoffs.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag-item">ReactJS</span>
+                                <span class="skill-tag-item">ThreeJS</span>
+                                <span class="skill-tag-item">System Design</span>
+                                <span class="skill-tag-item">APIs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        <!-- How I Work Section -->
+        <section id="how-i-work">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <div class="section-label"
+                        style="text-align: center; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #9CA3AF; margin-bottom: 16px;">
+                        PROCESS</div>
+                    <h2 class="section-title">How I work</h2>
+                    <p class="section-subtitle">Six principles that guide my approach to building products.</p>
+                </div>
+                <div class="principles-grid">
+                    <div class="principle-card fade-in">
+                        <div class="principle-number">01</div>
+                        <h3>User problems first</h3>
+                        <p>I start with the problem, not the solution. Every feature should trace back to a real user
+                            need.</p>
+                    </div>
+                    <div class="principle-card fade-in">
+                        <div class="principle-number">02</div>
+                        <h3>Ship to learn</h3>
+                        <p>Perfect is the enemy of shipped. I believe in getting things in front of users fast and
+                            iterating.</p>
+                    </div>
+                    <div class="principle-card fade-in">
+                        <div class="principle-number">03</div>
+                        <h3>Write it down</h3>
+                        <p>Clear documentation creates alignment. PRDs, specs, and decision logs reduce ambiguity.</p>
+                    </div>
+                    <div class="principle-card fade-in">
+                        <div class="principle-number">04</div>
+                        <h3>Sweat the details</h3>
+                        <p>The difference between good and great products is in the micro-interactions and edge cases.
+                        </p>
+                    </div>
+                    <div class="principle-card fade-in">
+                        <div class="principle-number">05</div>
+                        <h3>Understand the stack</h3>
+                        <p>I don't hand off specs I can't explain technically. Understanding constraints leads to better
+                            solutions.</p>
+                    </div>
+                    <div class="principle-card fade-in">
+                        <div class="principle-number">06</div>
+                        <h3>Over-communicate</h3>
+                        <p>Stakeholder alignment isn't a one-time event. I keep everyone informed and involved.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- Inspiration Wall Section -->
+        <section class="inspiration-wall">
+            <div class="inspiration-header">
+                <div class="inspiration-label">CURATED INSPIRATION</div>
+                <h2 class="section-title">A wall of things that <em style="font-style: italic;">shape my thinking</em>.
+                </h2>
+                <p class="section-subtitle">A living collection of blogs, resources, and technical explorations I
+                    admire.</p>
+            </div>
+
+            <!-- First Row - Scrolls Left -->
+            <div class="scroll-row">
+                <div class="scroll-row-inner">
+                    <!-- 1. Superhuman Secret -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.lennysnewsletter.com/p/superhumans-secret-to-success-rahul-vohra', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Superhuman’s secret to success</h3>
+                        <p class="source">Lenny’s Newsletter</p>
+                    </div>
+                    <!-- 2. Shape Up -->
+                    <div class="inspiration-card" onclick="window.open('https://basecamp.com/shapeup', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Shape Up: Stop Running in Circles</h3>
+                        <p class="source">Basecamp</p>
+                    </div>
+                    <!-- 3. Paul Graham Essays -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.linkedin.com/posts/salembagami_entrepreneurship-startups-paulgraham-activity-7367891774758965248-rrVM', '_blank')">
+                        <div class="card-category strategy">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                            </svg>
+                            STRATEGY
+                        </div>
+                        <h3>PG’s Must-Read Essays</h3>
+                        <p class="source">Paul Graham</p>
+                    </div>
+                    <!-- 4. Steve Jobs Video -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.youtube.com/watch?v=UF8uR6Z6KLc', '_blank')">
+                        <div class="card-category strategy">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                            </svg>
+                            INSPIRATION
+                        </div>
+                        <h3>Steve Jobs’ 2005 Commencement</h3>
+                        <p class="source">YouTube</p>
+                    </div>
+                    <!-- 5. Clojure -->
+                    <div class="inspiration-card" onclick="window.open('https://clojure.org/', '_blank')">
+                        <div class="card-category engineering">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                            </svg>
+                            ENGINEERING
+                        </div>
+                        <h3>Clojure Ecosystem</h3>
+                        <p class="source">clojure.org</p>
+                    </div>
+                    <!-- 6. Superhuman PMF -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://firstround.com/review/how-superhuman-built-an-engine-to-find-product-market-fit/', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Engine to Find PMF</h3>
+                        <p class="source">First Round Review</p>
+                    </div>
+                    <!-- 7. Hire a PM -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.bringthedonuts.com/essays/productmanager.html', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>How to Hire a PM</h3>
+                        <p class="source">Ken Norton</p>
+                    </div>
+                    <!-- 8. Product Thinking Mindset -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.thoughtworks.com/en-in/perspectives/edition6-product-innovation/article', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Product Thinking Mindset</h3>
+                        <p class="source">Thoughtworks</p>
+                    </div>
+                    <!-- 9. Design Thinking -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.ideou.com/blogs/inspiration/11-products-made-using-design-thinking', '_blank')">
+                        <div class="card-category design">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0 1 12 22z" />
+                            </svg>
+                            DESIGN
+                        </div>
+                        <h3>Design Thinking Examples</h3>
+                        <p class="source">IDEO U</p>
+                    </div>
+                    <!-- 10. Engineering Culture -->
+                    <div class="inspiration-card"
+                        onclick="window.open('http://www.effectiveengineer.com/blog/engineering-culture/', '_blank')">
+                        <div class="card-category engineering">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                            </svg>
+                            ENGINEERING
+                        </div>
+                        <h3>Engineering Culture</h3>
+                        <p class="source">The Effective Engineer</p>
+                    </div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="scroll-row-inner">
+                    <!-- 1. Superhuman Secret -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.lennysnewsletter.com/p/superhumans-secret-to-success-rahul-vohra', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Superhuman’s secret to success</h3>
+                        <p class="source">Lenny’s Newsletter</p>
+                    </div>
+                    <!-- 2. Shape Up -->
+                    <div class="inspiration-card" onclick="window.open('https://basecamp.com/shapeup', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Shape Up: Stop Running in Circles</h3>
+                        <p class="source">Basecamp</p>
+                    </div>
+                    <!-- 3. Paul Graham Essays -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.linkedin.com/posts/salembagami_entrepreneurship-startups-paulgraham-activity-7367891774758965248-rrVM', '_blank')">
+                        <div class="card-category strategy">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                            </svg>
+                            STRATEGY
+                        </div>
+                        <h3>PG’s Must-Read Essays</h3>
+                        <p class="source">Paul Graham</p>
+                    </div>
+                    <!-- 4. Steve Jobs Video -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.youtube.com/watch?v=UF8uR6Z6KLc', '_blank')">
+                        <div class="card-category strategy">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                            </svg>
+                            INSPIRATION
+                        </div>
+                        <h3>Steve Jobs’ 2005 Commencement</h3>
+                        <p class="source">YouTube</p>
+                    </div>
+                    <!-- 5. Clojure -->
+                    <div class="inspiration-card" onclick="window.open('https://clojure.org/', '_blank')">
+                        <div class="card-category engineering">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                            </svg>
+                            ENGINEERING
+                        </div>
+                        <h3>Clojure Ecosystem</h3>
+                        <p class="source">clojure.org</p>
+                    </div>
+                    <!-- 6. Superhuman PMF -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://firstround.com/review/how-superhuman-built-an-engine-to-find-product-market-fit/', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Engine to Find PMF</h3>
+                        <p class="source">First Round Review</p>
+                    </div>
+                    <!-- 7. Hire a PM -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.bringthedonuts.com/essays/productmanager.html', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>How to Hire a PM</h3>
+                        <p class="source">Ken Norton</p>
+                    </div>
+                    <!-- 8. Product Thinking Mindset -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.thoughtworks.com/en-in/perspectives/edition6-product-innovation/article', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Product Thinking Mindset</h3>
+                        <p class="source">Thoughtworks</p>
+                    </div>
+                    <!-- 9. Design Thinking -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.ideou.com/blogs/inspiration/11-products-made-using-design-thinking', '_blank')">
+                        <div class="card-category design">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0 1 12 22z" />
+                            </svg>
+                            DESIGN
+                        </div>
+                        <h3>Design Thinking Examples</h3>
+                        <p class="source">IDEO U</p>
+                    </div>
+                    <!-- 10. Engineering Culture -->
+                    <div class="inspiration-card"
+                        onclick="window.open('http://www.effectiveengineer.com/blog/engineering-culture/', '_blank')">
+                        <div class="card-category engineering">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                            </svg>
+                            ENGINEERING
+                        </div>
+                        <h3>Engineering Culture</h3>
+                        <p class="source">The Effective Engineer</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Row - Scrolls Right -->
+            <div class="scroll-row">
+                <div class="scroll-row-inner">
+                    <!-- 1. Rahul Vohra Emotion -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://podcasts.apple.com/us/podcast/rahul-vohra-using-emotion-to-design-great-products/id1154105909?i=1000493211576', '_blank')">
+                        <div class="card-category design">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0 1 12 22z" />
+                            </svg>
+                            DESIGN
+                        </div>
+                        <h3>Using Emotion to Design</h3>
+                        <p class="source">Founder’s Field Guide</p>
+                    </div>
+                    <!-- 2. Shape Up Print -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://37signals.com/podcast/shape-up-print-edition/', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Shape Up: Print Edition</h3>
+                        <p class="source">37signals</p>
+                    </div>
+                    <!-- 3. Paul Graham 101 -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.jaakkoj.com/blog/graham', '_blank')">
+                        <div class="card-category strategy">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                            </svg>
+                            STRATEGY
+                        </div>
+                        <h3>Paul Graham 101</h3>
+                        <p class="source">Jaakko's Blog</p>
+                    </div>
+                    <!-- 4. Steve Jobs Text -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://news.stanford.edu/stories/2005/06/youve-got-find-love-jobs-says', '_blank')">
+                        <div class="card-category strategy">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                            </svg>
+                            INSPIRATION
+                        </div>
+                        <h3>Steve Jobs Speech Text</h3>
+                        <p class="source">Stanford News</p>
+                    </div>
+                    <!-- 5. Art of PM -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.bringthedonuts.com/essays/the-art-of-product-management/', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>The Art of PM</h3>
+                        <p class="source">Ken Norton</p>
+                    </div>
+                    <!-- 6. Product Thinking 101 -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://uxplanet.org/product-thinking-101-1d71a0784f60', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Product Thinking 101</h3>
+                        <p class="source">UX Planet</p>
+                    </div>
+                    <!-- 7. Good Eng Blogs -->
+                    <div class="inspiration-card" onclick="window.open('https://danluu.com/corp-eng-blogs/', '_blank')">
+                        <div class="card-category engineering">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                            </svg>
+                            ENGINEERING
+                        </div>
+                        <h3>Good Eng Blogs</h3>
+                        <p class="source">Dan Luu</p>
+                    </div>
+                    <!-- 8. Gokul Rajaram -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/gokul-rajaram-on-product-thinking-and-innovation', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Gokul Rajaram on Product</h3>
+                        <p class="source">McKinsey</p>
+                    </div>
+                    <!-- 9. Engineering Excellence -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.infoq.com/podcasts/platform-engineering-culture-technical-leadership/', '_blank')">
+                        <div class="card-category engineering">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                            </svg>
+                            ENGINEERING
+                        </div>
+                        <h3>Engineering Excellence</h3>
+                        <p class="source">InfoQ</p>
+                    </div>
+                    <!-- 10. Sachin Rekhi -->
+                    <div class="inspiration-card" onclick="window.open('https://www.sachinrekhi.com/', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Sachin Rekhi Essays</h3>
+                        <p class="source">sachinrekhi.com</p>
+                    </div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="scroll-row-inner">
+                    <!-- 1. Rahul Vohra Emotion -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://podcasts.apple.com/us/podcast/rahul-vohra-using-emotion-to-design-great-products/id1154105909?i=1000493211576', '_blank')">
+                        <div class="card-category design">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0 1 12 22z" />
+                            </svg>
+                            DESIGN
+                        </div>
+                        <h3>Using Emotion to Design</h3>
+                        <p class="source">Founder’s Field Guide</p>
+                    </div>
+                    <!-- 2. Shape Up Print -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://37signals.com/podcast/shape-up-print-edition/', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Shape Up: Print Edition</h3>
+                        <p class="source">37signals</p>
+                    </div>
+                    <!-- 3. Paul Graham 101 -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.jaakkoj.com/blog/graham', '_blank')">
+                        <div class="card-category strategy">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                            </svg>
+                            STRATEGY
+                        </div>
+                        <h3>Paul Graham 101</h3>
+                        <p class="source">Jaakko's Blog</p>
+                    </div>
+                    <!-- 4. Steve Jobs Text -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://news.stanford.edu/stories/2005/06/youve-got-find-love-jobs-says', '_blank')">
+                        <div class="card-category strategy">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                            </svg>
+                            INSPIRATION
+                        </div>
+                        <h3>Steve Jobs Speech Text</h3>
+                        <p class="source">Stanford News</p>
+                    </div>
+                    <!-- 5. Art of PM -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.bringthedonuts.com/essays/the-art-of-product-management/', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>The Art of PM</h3>
+                        <p class="source">Ken Norton</p>
+                    </div>
+                    <!-- 6. Product Thinking 101 -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://uxplanet.org/product-thinking-101-1d71a0784f60', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Product Thinking 101</h3>
+                        <p class="source">UX Planet</p>
+                    </div>
+                    <!-- 7. Good Eng Blogs -->
+                    <div class="inspiration-card" onclick="window.open('https://danluu.com/corp-eng-blogs/', '_blank')">
+                        <div class="card-category engineering">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                            </svg>
+                            ENGINEERING
+                        </div>
+                        <h3>Good Eng Blogs</h3>
+                        <p class="source">Dan Luu</p>
+                    </div>
+                    <!-- 8. Gokul Rajaram -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/gokul-rajaram-on-product-thinking-and-innovation', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Gokul Rajaram on Product</h3>
+                        <p class="source">McKinsey</p>
+                    </div>
+                    <!-- 9. Engineering Excellence -->
+                    <div class="inspiration-card"
+                        onclick="window.open('https://www.infoq.com/podcasts/platform-engineering-culture-technical-leadership/', '_blank')">
+                        <div class="card-category engineering">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                            </svg>
+                            ENGINEERING
+                        </div>
+                        <h3>Engineering Excellence</h3>
+                        <p class="source">InfoQ</p>
+                    </div>
+                    <!-- 10. Sachin Rekhi -->
+                    <div class="inspiration-card" onclick="window.open('https://www.sachinrekhi.com/', '_blank')">
+                        <div class="card-category product">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            PRODUCT
+                        </div>
+                        <h3>Sachin Rekhi Essays</h3>
+                        <p class="source">sachinrekhi.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Gallery & Work Section -->
+        <section id="work">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <div class="section-label"
+                        style="text-align: center; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #9CA3AF; margin-bottom: 16px;">
+                        GALLERY & WORK</div>
+                    <h2 class="section-title">Work that shows <em style="font-style: italic;">how I think and
+                            build</em>.</h2>
+                    <p class="section-subtitle">From high-fidelity UI designs to technical walkthroughs and strategic
+                        documentation.</p>
+                </div>
+                <div class="projects-grid">
+                    <!-- Project 1: Behance Embed -->
+                    <div class="project-card fade-in">
+                        <div class="project-embed">
+                            <iframe src="https://www.behance.net/embed/project/125202695?ilo0=1" height="316"
+                                width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write"
+                                refererPolicy="strict-origin-when-cross-origin"></iframe>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0 1 12 22z" />
+                                </svg>
+                                PRODUCT DESIGN
+                            </div>
+                            <h3><a href="https://www.behance.net/gallery/125202695" target="_blank"
+                                    style="text-decoration: none; color: inherit;">clite mobile app</a></h3>
+                            <p>Full career exploration platform design in neumorphism.</p>
+                            <a href="https://www.behance.net/gallery/125202695" target="_blank" class="btn-text"
+                                style="display: inline-block; margin-top: 16px; color: #667eea; font-weight: 600; text-decoration: none;">View
+                                Project →</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: YouTube Video -->
+                    <div class="project-card fade-in">
+                        <div class="project-embed">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/1OeU16lQ2JM"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                </svg>
+                                PRODUCT DEMO
+                            </div>
+                            <h3><a href="https://youtu.be/1OeU16lQ2JM" target="_blank"
+                                    style="text-decoration: none; color: inherit;">Vade Studio: AI-Powered Websites</a>
+                            </h3>
+                            <p>Building AI-powered websites with dynamic copywriting using Vade Studio.</p>
+                            <a href="https://youtu.be/1OeU16lQ2JM" target="_blank" class="btn-text"
+                                style="display: inline-block; margin-top: 16px; color: #667eea; font-weight: 600; text-decoration: none;">Watch
+                                Video →</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Behance Embed -->
+                    <div class="project-card fade-in">
+                        <div class="project-embed">
+                            <iframe src="https://www.behance.net/embed/project/132854883?ilo0=1" height="316"
+                                width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write"
+                                refererPolicy="strict-origin-when-cross-origin"></iframe>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0 1 12 22z" />
+                                </svg>
+                                VISUAL DESIGN
+                            </div>
+                            <h3><a href="https://www.behance.net/gallery/132854883" target="_blank"
+                                    style="text-decoration: none; color: inherit;">Brand Identity Project</a></h3>
+                            <p>Comprehensive brand identity and visual design exploration.</p>
+                            <a href="https://www.behance.net/gallery/132854883" target="_blank" class="btn-text"
+                                style="display: inline-block; margin-top: 16px; color: #667eea; font-weight: 600; text-decoration: none;">View
+                                Project →</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: YouTube Video -->
+                    <div class="project-card fade-in">
+                        <div class="project-embed">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/_6EQuWuQTgw"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                                </svg>
+                                ENGINEERING
+                            </div>
+                            <h3><a href="https://youtu.be/_6EQuWuQTgw" target="_blank"
+                                    style="text-decoration: none; color: inherit;">Integrating Shopify Store</a></h3>
+                            <p>A technical walkthrough on integrating a Shopify store for online businesses.</p>
+                            <a href="https://youtu.be/_6EQuWuQTgw" target="_blank" class="btn-text"
+                                style="display: inline-block; margin-top: 16px; color: #667eea; font-weight: 600; text-decoration: none;">Watch
+                                Video →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Experience Timeline -->
+        <section id="experience">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <div class="section-label"
+                        style="text-align: center; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #9CA3AF; margin-bottom: 16px;">
+                        TIMELINE</div>
+                    <h2 class="section-title">Professional Journey</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">2024 — 2025</div>
+                        <div class="timeline-content">
+                            <h3>Vade AI</h3>
+                            <p class="company">Head of Product</p>
+                            <p>Led product strategy, roadmap, and cross-functional teams for advanced AI solutions.
+                                Bridging 0→1 and scale.</p>
+                            <div class="timeline-tags">
+                                <span class="timeline-tag">Agentic AI</span>
+                                <span class="timeline-tag">LLMs</span>
+                                <span class="timeline-tag">Product Ops</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">2022 — 2024</div>
+                        <div class="timeline-content">
+                            <h3>Vade Labs</h3>
+                            <p class="company">Product Manager (Founding Team)</p>
+                            <p>Built the initial product from scratch. Led discovery, design, and initial engineering
+                                coordination. YC HackerNews Top 30.</p>
+                            <div class="timeline-tags">
+                                <span class="timeline-tag">0→1 Build</span>
+                                <span class="timeline-tag">Discovery</span>
+                                <span class="timeline-tag">YC HackerNews</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">2021 — 2022</div>
+                        <div class="timeline-content">
+                            <h3>clite</h3>
+                            <p class="company">Co-Founder</p>
+                            <p>Career exploration platform for students. Grew to 5k+ users. 100X.VC Gurukul Cohort 2.
+                                GradCapital IdeaHunt Winner. Finalist at YCF Grand
+                                Challenge.</p>
+                            <div class="timeline-tags">
+                                <span class="timeline-tag">Entrepreneurship</span>
+                                <span class="timeline-tag">Business Model</span>
+                                <span class="timeline-tag">Product Lead</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-date">2020 — 2024</div>
+                        <div class="timeline-content">
+                            <h3>Computer Science & Engineering</h3>
+                            <p class="company">Bachelor of Technology</p>
+                            <p>Strong technical foundation in system design, algorithms, and full-stack development.</p>
+                            <div class="timeline-tags">
+                                <span class="timeline-tag">System Design</span>
+                                <span class="timeline-tag">Algorithms</span>
+                                <span class="timeline-tag">CS Fundamentals</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="contact-cta fade-in">
+                    <h2 class="section-title">Let's build something.</h2>
+                    <p>I'm actively seeking my next role as a Product Manager. If you're building something ambitious
+                        and need someone who can think, design, and ship—let's talk.</p>
+                    <div class="contact-buttons">
+                        <a href="mailto:akash.ojha.aj@gmail.com"
+                            class="contact-btn contact-btn-primary">akash.ojha.aj@gmail.com</a>
+                        <a href="https://www.linkedin.com/in/skylimiting/" target="_blank" rel="noopener"
+                            class="contact-btn contact-btn-secondary">LinkedIn</a>
+                    </div>
+                    <div class="contact-additional">
+                        <a href="AkashOjha_Resume_PM.pdf" download="AkashOjha_Resume_PM.pdf" target="_blank">Download
+                            Resume</a>
+                        <span style="color: #E5E7EB;">·</span>
+                        <a href="https://github.com/asteriskesky" target="_blank" rel="noopener">View GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">AKASH <span>OJHA</span></div>
+                    <p class="footer-tagline">Product Manager bridging product thinking, design sensibility, and
+                        engineering depth.</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-links">
+                        <div class="footer-links-title">Navigate</div>
+                        <a href="#work">Work</a>
+                        <a href="#about">About</a>
+                        <a href="#how-i-work">Process</a>
+                        <a href="#experience">Experience</a>
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-links-title">Connect</div>
+                        <a href="mailto:akash.ojha.aj@gmail.com">Email</a>
+                        <a href="https://www.linkedin.com/in/skylimiting/" target="_blank" rel="noopener">LinkedIn</a>
+                        <a href="https://github.com/asteriskesky" target="_blank" rel="noopener">GitHub</a>
+                        <a href="https://www.behance.net/asteriskui" target="_blank" rel="noopener">Behance</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">© 2026 Akash Ojha. Built with passion and craft.</div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/skylimiting/" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                        </svg>
+                    </a>
+                    <a href="https://github.com/asteriskesky" target="_blank" rel="noopener" aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.behance.net/asteriskui" target="_blank" rel="noopener" aria-label="Behance">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M6.5 12C7.9 12 9 11.43 9 10.16c0-1.21-1.1-1.66-2.5-1.66H4V12h2.5M4 14v3.5h2.5c1.5 0 3-.5 3-2.03 0-1.24-1.5-1.47-3-1.47H4m11.5-9H20v1.5h-4.5V5M6.5 6.5C8.66 6.5 11 7.25 11 10c0 1.38-.5 2.5-1.5 3.12 1.5.5 2.5 1.63 2.5 3.38 0 3.13-2.34 4-5 4H2V6.5h4.5M15 10.5c0 2.5 1.5 4.5 4 4.5s4-2 4-4.5-1.5-4.5-4-4.5-4 2-4 4.5m6.4 0c0 1.53-.7 2.9-2.4 2.9s-2.4-1.37-2.4-2.9.7-2.9 2.4-2.9 2.4 1.37 2.4 2.9z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const heroStates = [
+            {
+                label: 'Product Manager',
+                title: 'I build products',
+                subtitle: 'Strategic thinking. Clear execution. Real impact.',
+                gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+            },
+            {
+                label: 'Designer',
+                title: 'I design experiences',
+                subtitle: 'User flows. Wireframes. Interfaces that work.',
+                gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
+            },
+            {
+                label: 'Coder',
+                title: 'I write code',
+                subtitle: 'Frontend. Backend. Systems that scale.',
+                gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+            },
+            {
+                label: 'Builder',
+                title: 'I ship products',
+                subtitle: 'From idea to launch. End-to-end ownership.',
+                gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+            }
+        ];
+
+        let currentState = 0;
+        let isHeroActive = true;
+        let isNavigating = false;
+        let scrollTimeout;
+        const hero = document.querySelector('.hero');
+        const heroLabel = document.getElementById('heroLabel');
+        const heroTitle = document.getElementById('heroTitle');
+        const heroSubtitle = document.getElementById('heroSubtitle');
+        const scrollHint = document.getElementById('scrollHint');
+
+        const heroColors = [
+            '#6f74a6',
+            '#f2a5b3',
+            '#77d6fe',
+            '#fcb8a4'
+        ];
+
+        function updateHeroState(state) {
+            currentState = state;
+            const stateData = heroStates[state];
+
+            hero.style.background = stateData.gradient;
+            hero.setAttribute('data-state', state);
+            heroLabel.textContent = stateData.label;
+            heroTitle.textContent = stateData.title;
+            heroSubtitle.textContent = stateData.subtitle;
+
+            window.parent.postMessage({
+                type: 'portfolioColorUpdate',
+                color: heroColors[state]
+            }, '*');
+
+            if (state === heroStates.length - 1) {
+                hero.classList.add('final-state');
+                scrollHint.textContent = 'Scroll to continue';
+            } else {
+                hero.classList.remove('final-state');
+                scrollHint.textContent = 'Scroll to explore';
+            }
+        }
+
+        let lastScrollTime = 0;
+        const scrollDelay = 1000;
+
+        window.addEventListener('wheel', (e) => {
+            if (!isHeroActive) return;
+
+            const now = Date.now();
+            if (now - lastScrollTime < scrollDelay) {
+                e.preventDefault();
+                return;
+            }
+
+            if (e.deltaY > 0) {
+                if (currentState < heroStates.length - 1) {
+                    e.preventDefault();
+                    lastScrollTime = now;
+                    updateHeroState(currentState + 1);
+                } else {
+                    isHeroActive = false;
+                    hero.style.position = 'absolute';
+                    scrollHint.style.opacity = '0';
+                    scrollHint.style.display = 'none';
+                    window.parent.postMessage({
+                        type: 'portfolioColorUpdate',
+                        color: '#F8F9FA'
+                    }, '*');
+                }
+            } else if (e.deltaY < 0) {
+                if (currentState > 0) {
+                    e.preventDefault();
+                    lastScrollTime = now;
+                    updateHeroState(currentState - 1);
+                } else if (window.scrollY === 0) {
+                    e.preventDefault();
+                }
+            }
+        }, { passive: false });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY < 100 && !isHeroActive && !isNavigating) {
+                isHeroActive = true;
+                hero.style.position = 'fixed';
+                scrollHint.style.display = 'block';
+                setTimeout(() => {
+                    scrollHint.style.opacity = '0.7';
+                }, 10);
+
+                if (currentState !== heroStates.length - 1) {
+                    updateHeroState(heroStates.length - 1);
+                }
+            } else if (window.scrollY > 100) {
+                isNavigating = false;
+
+                if (!isHeroActive) {
+                    window.parent.postMessage({
+                        type: 'portfolioColorUpdate',
+                        color: '#F8F9FA'
+                    }, '*');
+                }
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    if (isHeroActive) {
+                        isNavigating = true;
+                        isHeroActive = false;
+                        hero.style.position = 'absolute';
+                        scrollHint.style.opacity = '0';
+                        scrollHint.style.display = 'none';
+                        updateHeroState(heroStates.length - 1);
+
+                        window.parent.postMessage({
+                            type: 'portfolioColorUpdate',
+                            color: '#F8F9FA'
+                        }, '*');
+                    }
+
+                    setTimeout(() => {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 100);
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        updateHeroState(0);
+    </script>
+</body>
+
+</html>
