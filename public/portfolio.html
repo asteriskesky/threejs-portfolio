@@ -149,6 +149,7 @@
             .navbar {
                 width: calc(100% - 40px);
                 top: 16px;
+                padding: 8px 12px;
             }
 
             .navbar-links {
@@ -157,6 +158,15 @@
 
             .navbar-container {
                 padding: 0 4px;
+            }
+
+            .navbar-logo {
+                font-size: 16px;
+            }
+
+            .navbar-cta .say-hello {
+                padding: 8px 20px;
+                font-size: 13px;
             }
         }
 
@@ -981,6 +991,26 @@
                 font-size: 20px;
             }
 
+            .hero-content {
+                padding: 0 24px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+                padding: 14px 32px;
+            }
+
+            .scroll-hint {
+                font-size: 11px;
+                bottom: 32px;
+            }
+
             section {
                 padding: 80px 0;
             }
@@ -989,12 +1019,48 @@
                 padding: 0 24px;
             }
 
+            .section-title {
+                font-size: 36px;
+            }
+
+            .section-subtitle {
+                font-size: 16px;
+            }
+
             .case-study {
                 padding: 32px 24px;
             }
 
+            .case-study-title {
+                font-size: 24px;
+            }
+
+            .case-study-metrics {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .metric {
+                padding: 16px;
+            }
+
             .contact {
                 padding: 60px 32px;
+            }
+
+            .contact h2 {
+                font-size: 32px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+
+            .contact-link {
+                width: 100%;
+                justify-content: center;
+                padding: 14px 24px;
+                min-height: 48px;
             }
 
             .timeline::before {
@@ -1188,10 +1254,24 @@
 
             .inspiration-header {
                 padding: 0 24px;
+                margin-bottom: 32px;
+            }
+
+            .inspiration-header h2 {
+                font-size: 28px;
             }
 
             .inspiration-card {
-                min-width: 240px;
+                min-width: 280px;
+                padding: 24px;
+            }
+
+            .inspiration-card h3 {
+                font-size: 18px;
+            }
+
+            .inspiration-card .source {
+                font-size: 14px;
             }
         }
 
@@ -1541,6 +1621,21 @@
         @media (max-width: 640px) {
             .principles-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .contact-btn {
+                width: 100%;
+                justify-content: center;
+                min-height: 48px;
+            }
+
+            .contact-additional {
+                flex-direction: column;
+                gap: 16px;
             }
         }
 

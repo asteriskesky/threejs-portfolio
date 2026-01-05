@@ -28,8 +28,22 @@ export default function Experience() {
     const [showPingDot, setShowPingDot] = useState(false)
     const [isMusicPlaying, setIsMusicPlaying] = useState(false)
     const [hoveringMusic, setHoveringMusic] = useState(false)
+    const [isMobile, setIsMobile] = useState(false)
+    const [isTablet, setIsTablet] = useState(false)
     const screenRef = useRef()
     const audioRef = useRef(new Audio('/sounds/elevator.mp3'))
+
+    // Detect mobile and tablet viewports
+    useEffect(() => {
+        const checkViewport = () => {
+            const width = window.innerWidth
+            setIsMobile(width <= 640)  // Only small phones
+            setIsTablet(width > 640 && width <= 1024)  // Tablets and large phones
+        }
+        checkViewport()
+        window.addEventListener('resize', checkViewport)
+        return () => window.removeEventListener('resize', checkViewport)
+    }, [])
 
     useEffect(() => {
         audioRef.current.loop = true
@@ -50,16 +64,17 @@ export default function Experience() {
     const closedAngle = 3.04
     const openAngle = 1.31
 
-    const defaultPosX = -2.0
-    const defaultPosY = 0
-    const defaultPosZ = 5.3
+    // Responsive camera positions (mobile / tablet / desktop)
+    const defaultPosX = isMobile ? 0 : isTablet ? -1.0 : -2.0
+    const defaultPosY = isMobile ? -1.2 : isTablet ? -0.6 : 0
+    const defaultPosZ = isMobile ? 7 : isTablet ? 6 : 5.3
     const defaultRotX = 0
-    const defaultRotY = -0.4
+    const defaultRotY = isMobile ? 0 : isTablet ? -0.2 : -0.4
     const defaultRotZ = 0
 
     const zoomedPosX = 0
-    const zoomedPosY = 0.2
-    const zoomedPosZ = 2.5
+    const zoomedPosY = isMobile ? -0.8 : isTablet ? -0.3 : 0.2
+    const zoomedPosZ = isMobile ? 3.2 : isTablet ? 2.8 : 2.5
     const zoomedRotX = 0
     const zoomedRotY = 0
     const zoomedRotZ = 0
@@ -106,7 +121,7 @@ export default function Experience() {
     }, [computer, closedAngle])
 
     useEffect(() => {
-        if (isFullyOpened && !isZoomed) {
+        if (isFullyOpened && !isZoomed && !isMobile) {
             const timer = setTimeout(() => {
                 setShowPingDot(true)
             }, 500)
@@ -115,7 +130,7 @@ export default function Experience() {
         } else {
             setShowPingDot(false)
         }
-    }, [isFullyOpened, isZoomed])
+    }, [isFullyOpened, isZoomed, isMobile])
 
     const targetPosition = useRef(new THREE.Vector3(defaultPosX, defaultPosY, defaultPosZ))
     const targetRotation = useRef(new THREE.Euler(defaultRotX, defaultRotY, defaultRotZ))
@@ -160,7 +175,7 @@ export default function Experience() {
 
     const handleModelClick = (e) => {
         e.stopPropagation()
-        if (hoveringMusic) return
+        if (hoveringMusic || isMobile) return
         setIsZoomed(true)
     }
 
@@ -200,7 +215,7 @@ export default function Experience() {
 
                 <primitive
                     object={computer.scene}
-                    position-y={- 1.2}
+                    position-y={isMobile ? -3.0 : isTablet ? -2.0 : -1.2}
                     onClick={handleModelClick}
                 >
                     <Html
@@ -286,10 +301,10 @@ export default function Experience() {
 
                 <Text
                     font="./bangers-v20-latin-regular.woff"
-                    fontSize={0.8}
-                    position={[2.5, 0.5, 0.5]}
-                    rotation-y={- 1.25}
-                    maxWidth={3}
+                    fontSize={isMobile ? 0.5 : isTablet ? 0.65 : 0.8}
+                    position={isMobile ? [0, 0.8, -1.9] : isTablet ? [2.0, -0.35, 0.25] : [2.5, 0.5, 0.5]}
+                    rotation-y={isMobile ? 0 : isTablet ? -1.4 : -1.25}
+                    maxWidth={isMobile ? 2 : isTablet ? 2.5 : 3}
                 >
                     Hey 👋🏻 I'm Akash
                 </Text>
@@ -297,7 +312,7 @@ export default function Experience() {
         </PresentationControls>
 
         <ContactShadows
-            position-y={- 1.4}
+            position-y={isMobile ? -3.2 : isTablet ? -2.2 : -1.4}
             opacity={0.4}
             scale={5}
             blur={2.4}
