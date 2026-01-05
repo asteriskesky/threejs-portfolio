@@ -2734,6 +2734,52 @@
             }
         }, { passive: false });
 
+        // Touch support for mobile devices
+        let touchStartY = 0;
+        let touchEndY = 0;
+        const minSwipeDistance = 50;
+
+        window.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        window.addEventListener('touchend', (e) => {
+            if (!isHeroActive) return;
+
+            touchEndY = e.changedTouches[0].clientY;
+            const swipeDistance = touchStartY - touchEndY;
+
+            const now = Date.now();
+            if (now - lastScrollTime < scrollDelay) {
+                return;
+            }
+
+            // Swipe up (scroll down)
+            if (swipeDistance > minSwipeDistance) {
+                if (currentState < heroStates.length - 1) {
+                    lastScrollTime = now;
+                    updateHeroState(currentState + 1);
+                } else {
+                    // Last slide, allow scrolling to next section
+                    isHeroActive = false;
+                    hero.style.position = 'absolute';
+                    scrollHint.style.opacity = '0';
+                    scrollHint.style.display = 'none';
+                    window.parent.postMessage({
+                        type: 'portfolioColorUpdate',
+                        color: '#F8F9FA'
+                    }, '*');
+                }
+            }
+            // Swipe down (scroll up)
+            else if (swipeDistance < -minSwipeDistance) {
+                if (currentState > 0) {
+                    lastScrollTime = now;
+                    updateHeroState(currentState - 1);
+                }
+            }
+        }, { passive: true });
+
         window.addEventListener('scroll', () => {
             if (window.scrollY < 100 && !isHeroActive && !isNavigating) {
                 isHeroActive = true;
