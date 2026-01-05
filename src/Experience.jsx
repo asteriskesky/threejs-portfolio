@@ -18,7 +18,6 @@ export default function Experience() {
     const pingDotColor = '#52c774'
     const pingDotScale = 2.5
 
-    const computer = useGLTF('/models/macbook_model.gltf')
     const { camera, gl } = useThree()
     const [isZoomed, setIsZoomed] = useState(false)
     const [isLaptopOpen, setIsLaptopOpen] = useState(false)
@@ -28,10 +27,14 @@ export default function Experience() {
     const [showPingDot, setShowPingDot] = useState(false)
     const [isMusicPlaying, setIsMusicPlaying] = useState(false)
     const [hoveringMusic, setHoveringMusic] = useState(false)
-    const [isMobile, setIsMobile] = useState(false)
-    const [isTablet, setIsTablet] = useState(false)
+    const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' && window.innerWidth <= 640)
+    const [isTablet, setIsTablet] = useState(typeof window !== 'undefined' && window.innerWidth > 640 && window.innerWidth <= 1024)
     const screenRef = useRef()
     const audioRef = useRef(new Audio('/sounds/elevator.mp3'))
+
+    const macbook = useGLTF('/models/macbook_model.gltf')
+    const iphone = useGLTF('/models/iphone/scene.gltf')
+    const computer = isMobile ? iphone : macbook
 
     // Detect mobile and tablet viewports
     useEffect(() => {
@@ -72,12 +75,12 @@ export default function Experience() {
     const defaultRotY = isMobile ? 0 : isTablet ? -0.2 : -0.4
     const defaultRotZ = 0
 
-    const zoomedPosX = 0
-    const zoomedPosY = isMobile ? -0.8 : isTablet ? -0.3 : 0.2
-    const zoomedPosZ = isMobile ? 3.2 : isTablet ? 2.8 : 2.5
-    const zoomedRotX = 0
-    const zoomedRotY = 0
-    const zoomedRotZ = 0
+    const zoomedPosX = isMobile ? 0.3 : isTablet ? -0.6 : 0
+    const zoomedPosY = isMobile ? -1.8 : isTablet ? -0.3 : 0.2
+    const zoomedPosZ = isMobile ? 5.0 : isTablet ? 2.8 : 2.5
+    const zoomedRotX = isMobile ? 0.03 : 0
+    const zoomedRotY = isMobile ? 0.05 : 0
+    const zoomedRotZ = isMobile ? -0.01 : 0
 
     const transitionSpeed = 2
 
@@ -96,32 +99,39 @@ export default function Experience() {
 
     useEffect(() => {
         if (computer.scene) {
-            computer.scene.traverse((child) => {
-                if (child.name.toLowerCase().includes('screen') ||
-                    child.name.toLowerCase().includes('display') ||
-                    child.name === 'Top') {
-                    screenRef.current = child
-                    child.rotation.x = closedAngle
-                }
+            if (!isMobile) {
+                // MacBook setup
+                computer.scene.traverse((child) => {
+                    if (child.name.toLowerCase().includes('screen') ||
+                        child.name.toLowerCase().includes('display') ||
+                        child.name === 'Top') {
+                        screenRef.current = child
+                        child.rotation.x = closedAngle
+                    }
 
-                if (child.isMesh && (
-                    child.name.toLowerCase().includes('camera') ||
-                    child.name.toLowerCase().includes('webcam') ||
-                    child.name.toLowerCase().includes('lens') ||
-                    child.name.toLowerCase().includes('ring')
-                )) {
-                    child.visible = false
-                }
-            })
+                    if (child.isMesh && (
+                        child.name.toLowerCase().includes('camera') ||
+                        child.name.toLowerCase().includes('webcam') ||
+                        child.name.toLowerCase().includes('lens') ||
+                        child.name.toLowerCase().includes('ring')
+                    )) {
+                        child.visible = false
+                    }
+                })
 
-            setTimeout(() => {
+                setTimeout(() => {
+                    setIsLaptopOpen(true)
+                }, 500)
+            } else {
+                // iPhone setup - open immediately
                 setIsLaptopOpen(true)
-            }, 500)
+                setIsFullyOpened(true)
+            }
         }
-    }, [computer, closedAngle])
+    }, [computer, closedAngle, isMobile])
 
     useEffect(() => {
-        if (isFullyOpened && !isZoomed && !isMobile) {
+        if (isFullyOpened && !isZoomed) {
             const timer = setTimeout(() => {
                 setShowPingDot(true)
             }, 500)
@@ -130,7 +140,7 @@ export default function Experience() {
         } else {
             setShowPingDot(false)
         }
-    }, [isFullyOpened, isZoomed, isMobile])
+    }, [isFullyOpened, isZoomed])
 
     const targetPosition = useRef(new THREE.Vector3(defaultPosX, defaultPosY, defaultPosZ))
     const targetRotation = useRef(new THREE.Euler(defaultRotX, defaultRotY, defaultRotZ))
@@ -175,7 +185,9 @@ export default function Experience() {
 
     const handleModelClick = (e) => {
         e.stopPropagation()
-        if (hoveringMusic || isMobile) return
+        if (hoveringMusic) return
+        // On mobile, don't zoom when clicking the model body (only the ping dot)
+        if (isMobile) return
         setIsZoomed(true)
     }
 
@@ -215,21 +227,26 @@ export default function Experience() {
 
                 <primitive
                     object={computer.scene}
-                    position-y={isMobile ? -3.0 : isTablet ? -2.0 : -1.2}
+                    position-y={isMobile ? -2.0 : isTablet ? -2.0 : -1.2}
+                    position-z={isMobile ? -1.0 : isTablet ? 0 : 0}
+                    position-x={isMobile ? 0 : isTablet ? -0.5 : 0}
+                    scale={isMobile ? 25 : 1}
                     onClick={handleModelClick}
                 >
                     <Html
                         transform
-                        wrapperClass="htmlScreen"
-                        distanceFactor={1.17}
-                        position={[0, 1.56, - 1.4]}
-                        rotation-x={- 0.256}
+                        wrapperClass={isMobile ? "htmlScreen htmlScreen-mobile" : "htmlScreen"}
+                        scale={isMobile ? 0.128 : 1}
+                        distanceFactor={isMobile ? 0.55 : 1.17}
+                        position={isMobile ? [0, 0, 0.004] : [0, 1.56, -1.4]}
+                        rotation-x={isMobile ? 0 : -0.256}
                     >
                         <div style={{
                             opacity: iframeOpacity,
                             pointerEvents: iframeOpacity > 0.5 ? 'auto' : 'none',
                             position: 'relative'
                         }}>
+
                             <iframe src="/portfolio.html" />
 
                             <div
@@ -272,37 +289,72 @@ export default function Experience() {
                                     </svg>
                                 )}
                             </div>
+
+                            {/* Mobile ping dot - bottom left, symmetrical to music icon */}
+                            {isMobile && (
+                                <div
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        setIsZoomed(true)
+                                    }}
+                                    style={{
+                                        position: 'absolute',
+                                        bottom: '20px',
+                                        left: '20px',
+                                        width: '50px',
+                                        height: '50px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        cursor: 'pointer',
+                                        opacity: showPingDot ? 1 : 0,
+                                        pointerEvents: showPingDot ? 'auto' : 'none',
+                                        transition: 'opacity 0.5s ease',
+                                        zIndex: 1000
+                                    }}
+                                >
+                                    <div
+                                        className="ping-dot"
+                                        style={{
+                                            '--dot-color': pingDotColor,
+                                            transform: 'scale(1.8)'
+                                        }}
+                                    ></div>
+                                </div>
+                            )}
                         </div>
                     </Html>
 
-                    <Html
-                        transform
-                        center
-                        distanceFactor={1.17}
-                        position={[pingDotX, pingDotY, pingDotZ]}
-                        rotation-x={pingDotRotX}
-                        rotation-y={pingDotRotY}
-                        rotation-z={pingDotRotZ}
-                        style={{
-                            opacity: showPingDot ? 1 : 0,
-                            pointerEvents: 'none',
-                            transition: 'opacity 0.5s ease'
-                        }}
-                    >
-                        <div
-                            className="ping-dot"
+                    {!isMobile && (
+                        <Html
+                            transform
+                            center
+                            distanceFactor={1.17}
+                            position={[pingDotX, pingDotY, pingDotZ]}
+                            rotation-x={pingDotRotX}
+                            rotation-y={pingDotRotY}
+                            rotation-z={pingDotRotZ}
                             style={{
-                                '--dot-color': pingDotColor,
-                                transform: `scale(${pingDotScale})`
+                                opacity: showPingDot ? 1 : 0,
+                                pointerEvents: 'none',
+                                transition: 'opacity 0.5s ease'
                             }}
-                        ></div>
-                    </Html>
+                        >
+                            <div
+                                className="ping-dot"
+                                style={{
+                                    '--dot-color': pingDotColor,
+                                    transform: `scale(${pingDotScale})`
+                                }}
+                            ></div>
+                        </Html>
+                    )}
                 </primitive>
 
                 <Text
                     font="./bangers-v20-latin-regular.woff"
                     fontSize={isMobile ? 0.5 : isTablet ? 0.65 : 0.8}
-                    position={isMobile ? [0, 0.8, -1.9] : isTablet ? [2.0, -0.35, 0.25] : [2.5, 0.5, 0.5]}
+                    position={isMobile ? [0, 0.8, -1.0] : isTablet ? [2.3, -0.35, 0.15] : [2.5, 0.5, 0.5]}
                     rotation-y={isMobile ? 0 : isTablet ? -1.4 : -1.25}
                     maxWidth={isMobile ? 2 : isTablet ? 2.5 : 3}
                 >
@@ -312,7 +364,7 @@ export default function Experience() {
         </PresentationControls>
 
         <ContactShadows
-            position-y={isMobile ? -3.2 : isTablet ? -2.2 : -1.4}
+            position-y={isMobile ? -4.0 : isTablet ? -2.2 : -1.4}
             opacity={0.4}
             scale={5}
             blur={2.4}

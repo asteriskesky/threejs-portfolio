@@ -21,6 +21,13 @@ body,
     background: #000000;
 }
 
+/* Mobile iPhone screen dimensions */
+.htmlScreen-mobile iframe {
+    width: 375px;
+    height: 812px;
+    border-radius: 60px;
+}
+
 .htmlScreen div {
     transform-origin: center center;
 }
