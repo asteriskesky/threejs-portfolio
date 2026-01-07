@@ -6,6 +6,10 @@ import Loader from './Loader.jsx'
 import { useState, Suspense } from 'react'
 import { useProgress } from '@react-three/drei'
 import { createPortal } from 'react-dom'
+import { inject } from '@vercel/analytics'
+
+// Initialize Vercel Web Analytics
+inject()
 
 function LoadingManager({ onProgress }) {
     const { progress, active } = useProgress()
