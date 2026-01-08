@@ -737,17 +737,22 @@
         }
 
         @media (max-width: 968px) {
+            .timeline {
+                padding-left: 0;
+            }
+
             .timeline::before {
-                left: 20px;
+                left: 48px;
             }
 
             .timeline-item {
                 flex-direction: column !important;
-                padding-left: 50px;
+                padding-left: 20px;
             }
 
             .timeline-item::before {
-                left: 20px;
+                left: 0px;
+                top: 0px;
                 transform: translateX(-50%);
             }
 
@@ -2566,7 +2571,7 @@
                             class="contact-btn contact-btn-secondary">LinkedIn</a>
                     </div>
                     <div class="contact-additional">
-                        <a href="AkashOjha_Resume_PM.pdf" download="AkashOjha_Resume_PM.pdf" target="_blank">Download
+                        <a href="AkashOjha_PM_Resume.pdf" download="AkashOjha_PM_Resume.pdf" target="_blank">Download
                             Resume</a>
                         <span style="color: #E5E7EB;">·</span>
                         <a href="https://github.com/asteriskesky" target="_blank" rel="noopener">View GitHub</a>
